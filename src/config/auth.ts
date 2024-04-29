@@ -1,4 +1,4 @@
-import passport, { DoneCallback } from 'passport';
+import passport, { type DoneCallback } from 'passport';
 import { User, type UserType } from './schema';
 import { validatePassword } from '../utils/password';
 
@@ -31,8 +31,9 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (user: UserType, done) => {
+  const { username } = user;
   try {
-    const usr = await User.findOne({ username: user.password });
+    const usr = await User.findOne({ username });
     done(null, usr);
   } catch (err) {
     done(err);
