@@ -1,0 +1,17 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Login | Members Only
+  body 
+    main 
+      form.form(action="/login", method="POST")
+        label(for="username") Username 
+        input#username(type="text", name="username")
+        label(for="password") Password
+        input#password(type="password", name="password")
+        button(type="submit") Login 
+      a(href="/register") Don't have account yet
+    if err 
+      p #{err}

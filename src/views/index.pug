@@ -3,12 +3,24 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="styles.css")
     title Members Only
   body 
-    header 
-    if isLogedIn
-      a(href="/logout") Logout
-    if !isLogenIn
-      a(href="/login") Login
+    header
+      if isLoggedIn 
+        div.headerContainer
+          h1 #{user.username}
+          ul.nav
+            li
+              form(action="/logout", method="post") 
+                input(type="submit", value="Logout")
+            li
+              a(href="/create-message") Create Message
+      else
+        a(href="/login") Login
     main 
-      h1 Home
+      for msg in messages
+        div.msg
+          if isLoggedIn
+            p.postedBy #{msg.postedBy.username}
+          p #{msg.body}

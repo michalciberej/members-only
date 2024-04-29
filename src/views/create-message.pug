@@ -1,0 +1,12 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Create Message | Members Only
+  body 
+    main 
+      form(action="/create-message", method="POST")
+        label(for="message") Message 
+        input#messsage(type="text", name="message")
+        button(type="submit") Submit
