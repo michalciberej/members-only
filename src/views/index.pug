@@ -16,11 +16,16 @@ html(lang="en")
                 input(type="submit", value="Logout")
             li
               a(href="/create-message") Create Message
+            if user.permision == "admin"
+              li
+                a(href="/admin") Admin Dashboard
       else
         a(href="/login") Login
     main 
       for msg in messages
         div.msg
           if isLoggedIn
-            p.postedBy #{msg.postedBy.username}
+            div.msgHidden
+              p.postedBy #{msg.postedBy.username}
+              p #{msg.postedOn.toLocaleString()}
           p #{msg.body}
